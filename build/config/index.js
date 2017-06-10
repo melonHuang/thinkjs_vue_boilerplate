@@ -28,8 +28,10 @@ module.exports = {
   },
   dev: {
     env: require('./dev.env'),
-    port: 8080,
+    proxyTarget: 'http://localhost:8360',
+    port: 8888,
     autoOpenBrowser: true,
+    assetsRoot: path.resolve(__dirname, '../../www'),
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {},
