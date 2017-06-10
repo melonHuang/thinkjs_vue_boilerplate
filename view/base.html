@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    {% block meta %}
+    <title>Thinkjs Vue Boileplate</title>
+    {% endblock %}
+
+    {%block common_css%}
+    <link rel="stylesheet" href="/static/css/global.css">
+    {% endblock %}
+
+    {%block page_css%}
+    <link rel="stylesheet" href="/static/css/{=http.module=}/{=http.controller=}_{=http.action=}.css">
+    {% endblock %}
+  </head>
+  <body>
+    {%block body%}
+    <div id="app"></div>
+    {% endblock %}
+
+    {%block common_js%}
+    <script src="/static/js/manifest.js"></script>
+    <script src="/static/js/vendor.js"></script>
+    <script src="/static/js/global.js"></script>
+    {% endblock %}
+
+    {%block page_js%}
+    <script src="/static/js/{=http.module=}/{=http.controller=}_{=http.action=}.js">
+    {% endblock %}
+
+    </script>
+  </body>
+</html>
