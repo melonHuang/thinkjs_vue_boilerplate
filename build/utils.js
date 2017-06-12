@@ -23,7 +23,7 @@ exports.getEntries = async function () {
   if(process.env.NODE_ENV === 'development') {
     const webpackDevServerPath = `webpack-dev-server/client?http://localhost:${config.dev.port}/`;
     for(let chunkName in entry) {
-      entry[chunkName].unshift(`webpack-dev-server/client?http://localhost:${config.dev.port}/`);
+      entry[chunkName].unshift(`webpack-dev-server/client?http://localhost:${config.dev.port}/`, 'webpack/hot/dev-server');
     }
   }
   return entry;

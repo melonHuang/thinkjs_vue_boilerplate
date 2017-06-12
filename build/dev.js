@@ -21,6 +21,7 @@ var autoOpenBrowser = !!config.dev.autoOpenBrowser
 var compiler = webpack(webpackConfig)
 
 const devServer = {
+  hot: true,
   // contentBase: 'www',
   contentBase: config.dev.assetsRoot,
   proxy: {
