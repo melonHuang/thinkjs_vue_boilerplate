@@ -1,0 +1,58 @@
+/**
+ * 便于快速调整样式的工具类CSS
+ * @section Utility
+ * @example
+ * @code
+ * .u-clearfix // 清除浮动
+ * .u-box-center // 使用margin:auto实现水平居中
+ * .u-fl // 向左浮动
+ * .u-fr // 向右浮动
+ * .u-text-center/left  // 调整文字对齐方式
+ * .u-container // 限制内容最大款
+ * .u-inline-block // 作为行内块渲染
+ * .u-clickable // 可点，鼠标上移时变为手指图标
+ *
+ */
+
+ .u-clearfix:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.u-fl {
+    float: left;
+}
+
+.u-fr {
+    float: right;
+}
+
+.u-text-center {
+    text-align: center;
+}
+
+.u-text-left {
+    text-align: left;
+}
+
+.u-text-right {
+    text-align: right;
+}
+
+.u-text-nowrap {
+    white-space: nowrap;
+}
+
+
+.u-clickable {
+    cursor: pointer;
+}
+
+.u-stretch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}

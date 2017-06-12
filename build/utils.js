@@ -1,5 +1,6 @@
 var path = require('path')
 var config = require('./config')
+var webpack = require('webpack')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 const promisify = require('es6-promisify');
 const glob = promisify(require('glob'))
@@ -29,6 +30,42 @@ exports.assetsPath = function (_path) {
   return path.posix.join(assetsSubDirectory, _path)
 }
 
+console.log(1111, path.join(__dirname, '../fesrc'))
+
+exports.postcssLoader = function() {
+  var postcssLoader = {
+    loader: 'postcss-loader',
+    options: {
+      config: {
+        path: 'build/postcss.config.js',
+      },
+      // 也可用于vue-loader中配置postcss
+      plugins: (loader) => {
+        var plugins =  [
+          require('postcss-import')({
+            // root: loader.resourcePath,
+            addDependencyTo: webpack,
+            path: [path.join(__dirname, '../fesrc')]
+          }),
+          require('postcss-cssnext')(),
+          require('autoprefixer')(),
+        ]
+        // if(loader) {
+        //   plugins.unshift(
+        //     require('postcss-import')({
+        //       // root: loader.resourcePath,
+        //       addDependencyTo: webpack,
+        //       path: [path.join(__dirname, '../fesrc')]
+        //     })
+        //   )
+        // }
+        return plugins
+      },
+    }
+  }
+  return postcssLoader
+}
+
 exports.cssLoaders = function (options) {
   options = options || {}
 
@@ -40,9 +77,12 @@ exports.cssLoaders = function (options) {
     }
   }
 
+  var postcssLoader = exports.postcssLoader(options)
+
+
   // generate loader string to be used with extract text plugin
   function generateLoaders (loader, loaderOptions) {
-    var loaders = [cssLoader]
+    var loaders = [cssLoader, postcssLoader]
     if (loader) {
       loaders.push({
         loader: loader + '-loader',
