@@ -18,8 +18,14 @@ exports.getEntries = async function () {
   const entry = {}
   files.forEach(file => {
       const entryName = path.posix.relative(config.base.entryRoot, file).replace(/\.js/, '')
-      entry[entryName] = file
+      entry[entryName] = [file]
   })
+  if(process.env.NODE_ENV === 'development') {
+    const webpackDevServerPath = `webpack-dev-server/client?http://localhost:${config.dev.port}/`;
+    for(let chunkName in entry) {
+      entry[chunkName].unshift(`webpack-dev-server/client?http://localhost:${config.dev.port}/`);
+    }
+  }
   return entry;
 }
 
@@ -42,23 +48,8 @@ exports.postcssLoader = function() {
       // 也可用于vue-loader中配置postcss
       plugins: (loader) => {
         var plugins =  [
-          require('postcss-import')({
-            // root: loader.resourcePath,
-            addDependencyTo: webpack,
-            path: [path.join(__dirname, '../fesrc')]
-          }),
-          require('postcss-cssnext')(),
-          require('autoprefixer')(),
+          require('postcss-cssnext')()
         ]
-        // if(loader) {
-        //   plugins.unshift(
-        //     require('postcss-import')({
-        //       // root: loader.resourcePath,
-        //       addDependencyTo: webpack,
-        //       path: [path.join(__dirname, '../fesrc')]
-        //     })
-        //   )
-        // }
         return plugins
       },
     }

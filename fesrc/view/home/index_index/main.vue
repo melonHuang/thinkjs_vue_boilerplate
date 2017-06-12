@@ -3,8 +3,6 @@
     Hello !!!
     Hello !!!
     Hello !!!
-    Hello !!!
-    Hello !!!
     <img src="~img/test.jpeg" alt="">
 
     <div class="Site">
@@ -21,17 +19,3 @@
 export default {
 }
 </script>
-
-<style lang="css">
-/*@import 'test.css';*/
-/*@import 'view/home/index_index/test.css';*/
-@import 'view/home/index_index/test.css';
-.Site {
-  background: yellow;
-  color: gray(85);
-
-  &-name {
-    color: white;
-  }
-}
-</style>

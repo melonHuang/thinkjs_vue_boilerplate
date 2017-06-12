@@ -1,10 +1,7 @@
-/*@import 'view/home/index_index/test.css';*/
-
 .Site {
   background: yellow;
   color: gray(85);
 
   &-name {
-    color: white;
   }
 }
