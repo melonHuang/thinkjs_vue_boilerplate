@@ -9,6 +9,7 @@ function resolve (dir) {
 
 module.exports = {
   entry: () => utils.getEntries(),
+  publicPath: config.dev.assetsPublicPath,
   output: {
     path: config.build.assetsRoot,
     // filename: utils.assetsPath('js/[name].[chunkhash].js'),
